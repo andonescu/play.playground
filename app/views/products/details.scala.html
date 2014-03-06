@@ -1,7 +1,7 @@
 @* details Template File *@
-@(product: Product)(implicit lang: Lang)
+@(product: Product)(implicit flash:Flash, lang: Lang)
 
-@main(Messages("products.details", product.name)){
+@main(Messages("products.details", product.name)) {
 	
 	<h2>
 		@tags.barcode(product.ean)

@@ -8,9 +8,4 @@ object Application extends Controller {
     Redirect(routes.Products.list())
   }
 
-  def hello(name: String) = Action {
-    Ok(views.html.hello(name))
-  }
-
-
 }
