@@ -1,0 +1,21 @@
+@* details Template File *@
+@(product: Product)(implicit lang: Lang)
+
+@main(Messages("products.details", product.name)){
+	
+	<h2>
+		@tags.barcode(product.ean)
+		@Messages("products.details", product.name)
+	</h2>
+	
+	<dl class="dl-horizontal">
+		<dt>@Messages("ean"):</dt>
+		<dl>@product.ean</dl>
+		
+		<dt>@Messages("name"):</dt>
+		<dl>@product.name</dl>
+		
+		<dt>@Messages("description"):</dt>
+		<dl>@product.description</dl>
+	</dl>
+}
