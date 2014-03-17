@@ -132,4 +132,12 @@ object Main extends App {
         List(List(elem)) ::: subLists
     }
   }
+
+  def packWithSpan[A](list: List[A]): List[List[A]] =
+    if (list.isEmpty) List(List[A]())
+    else {
+      val (packed, next) = list span (_ == list.head)
+      if (next == Nil) List(packed)
+      else packed :: packWithSpan(next)
+    }
 }

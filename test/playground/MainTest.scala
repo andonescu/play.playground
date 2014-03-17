@@ -52,5 +52,25 @@ class MainTest extends Specification {
       Main.pack(List('a, 'a, 'a, 'a))
         .equals(List(List('a, 'a, 'a, 'a)));
     }
+
+    "testing with an empty list" in {
+      Main.pack(List()).equals(List())
+    }
+  }
+
+  "#problem 9 - with span - : Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists. " should {
+    "the method should separate the input in different lists " in {
+      Main.packWithSpan(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+        .equals(List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)));
+    }
+
+    "the method should create only a single sublist" in {
+      Main.packWithSpan(List('a, 'a, 'a, 'a))
+        .equals(List(List('a, 'a, 'a, 'a)));
+    }
+
+    "testing with an empty list" in {
+      Main.packWithSpan(List()).equals(List(List()))
+    }
   }
 }
