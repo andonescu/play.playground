@@ -33,7 +33,8 @@ class MainTest extends Specification {
   "#problem 8 :  Eliminate consecutive duplicates of list elements : If a list contains repeated elements they should " +
     "be replaced with a single copy of the element. The order of the elements should not be changed. " should {
     "the method should eliminate all duplicates " in {
-      Main.compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e')).equals(List('a, 'b, 'c, 'a, 'd, 'e'))
+      val list = Main.compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+      list.equals(List('a, 'b, 'c, 'a, 'd, 'e))
     }
 
     "the method will not have duplicates to remove" in {
@@ -43,12 +44,12 @@ class MainTest extends Specification {
 
   "#problem 9 : Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists. " should {
     "the method should separate the input in different lists " in {
-      Main.pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e'))
-        .equals(List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e')));
+      Main.pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+        .equals(List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)));
     }
 
     "the method should create only a single sublist" in {
-      Main.pack(List('a, 'a, 'a, 'a'))
+      Main.pack(List('a, 'a, 'a, 'a))
         .equals(List(List('a, 'a, 'a, 'a)));
     }
   }

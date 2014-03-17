@@ -125,5 +125,11 @@ object Main extends App {
       (elem, newList) => if (newList.nonEmpty && elem.equals(newList.head)) newList else elem :: newList
     }
 
-  def pack[A](list: List[A]): List[Any] = throw new RuntimeException
+  def pack[A](list: List[A]): List[List[A]] = list.foldRight(List[List[A]]()) {
+    (elem, subLists) => {
+      if (subLists.nonEmpty && subLists.head.head.equals(elem)) List(elem :: subLists.head) ::: subLists.tail
+      else
+        List(List(elem)) ::: subLists
+    }
+  }
 }
