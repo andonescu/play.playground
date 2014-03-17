@@ -111,10 +111,17 @@ object Main extends App {
         }
     }
 
-  def flatten2(list: List[Any]): List[Any] = list.flatMap{
-    case ms : List[_] =>flatten2 (ms)
+  def flatten2(list: List[Any]): List[Any] = list.flatMap {
+    case ms: List[_] => flatten2(ms)
     case e => List(e)
   }
 
-  //  flatten(List(List(1, 1), 2, List(3, List(5, 8))))
+
+  def compress[A](list: List[A]): List[A] =
+  //  list.foldLeft(List[A]()) {
+  //    (list, elem) => if (!elem.equals(list.last)) list else list ::: List(elem)
+  //  }
+    list.foldRight(List[A]()) {
+      (elem, newList) => if (elem.equals(newList.head)) newList else elem :: newList
+    }
 }
