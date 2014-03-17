@@ -122,6 +122,8 @@ object Main extends App {
   //    (list, elem) => if (!elem.equals(list.last)) list else list ::: List(elem)
   //  }
     list.foldRight(List[A]()) {
-      (elem, newList) => if (elem.equals(newList.head)) newList else elem :: newList
+      (elem, newList) => if (newList.nonEmpty && elem.equals(newList.head)) newList else elem :: newList
     }
+
+  def pack[A](list: List[A]): List[Any] = throw new RuntimeException
 }
