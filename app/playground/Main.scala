@@ -70,7 +70,7 @@ object Main extends App {
   }
 
   def lengthFunctional[A](ls: List[A]): Int = ls.foldLeft(0) {
-    (c, a) =>  {
+    (c, a) => {
       println(" >> " + a)
       c + 1
     }
@@ -82,8 +82,39 @@ object Main extends App {
 
   println(s"problem 5:  Reverse a list.")
 
-  def reverse[A] (list: List[A]) : List[A] =
-    list.foldLeft(List[A]()){(reverseList, elem) => reverseList :: elem}
+  def reverse[A](list: List[A]): List[A] =
+    list.foldLeft(List[A]()) {
+      (reverseList, elem) => elem :: reverseList
+    }
 
   println(reverse(List(1, 1, 2, 3, 5, 8)))
+
+
+  println(s"problem 6:  Find out whether a list is a palindrome.")
+
+  def isPalindrome[A](list: List[A]): Boolean =
+    list.reverse.equals(list)
+
+
+  println(isPalindrome(List(1, 2, 3, 2, 1)))
+  println(isPalindrome(List(1, 4, 3, 2, 1)))
+  println(isPalindrome(List(1, 4, 3, 4, 1)))
+  println(isPalindrome(List(1, 2, 3, 2, 6)))
+
+  def flatten(list: List[Any]): List[Any] =
+
+    list.foldLeft(List[Any]()) {
+      (newList, elem) =>
+        elem match {
+          case a: List[Any] => newList ::: flatten(a)
+          case b: Any => newList ::: List(b)
+        }
+    }
+
+  def flatten2(list: List[Any]): List[Any] = list.flatMap{
+    case ms : List[_] =>flatten2 (ms)
+    case e => List(e)
+  }
+
+  //  flatten(List(List(1, 1), 2, List(3, List(5, 8))))
 }
