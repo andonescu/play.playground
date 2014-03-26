@@ -1,8 +1,8 @@
 package playground
 
-import org.specs2.mutable.Specification
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
+import org.specs2.mutable._
 
 /**
  * Created by iandonescu on 3/17/14.
@@ -71,6 +71,29 @@ class MainTest extends Specification {
 
     "testing with an empty list" in {
       Main.packWithSpan(List()).equals(List(List()))
+    }
+  }
+
+  "#problem 10 - Run-length encoding of a list - : Use the result of problem P09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as tuples (N, E) where N is the number of duplicates of the element E." should {
+
+    "separate the input and number it" in {
+      val encodeResult = Main.encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+      encodeResult.size mustEqual 6
+      // different ways to check a list
+      encodeResult must haveTheSameElementsAs(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+//      encodeResult must contain(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+      encodeResult.toSeq should equalTo(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)).toSeq)
+    }
+
+    "when nothing to separate, should create at least a list with all element with flag '1 " in {
+      val encodeResult = Main.encode(List('a, 'b, 'c))
+      encodeResult.size mustEqual 3
+    }
+
+    "when a list empty is used as input, we should receve an empty list" in {
+      val encodeResult = Main.encode(List())
+      encodeResult.size mustEqual 0
+      encodeResult mustEqual List()
     }
   }
 }

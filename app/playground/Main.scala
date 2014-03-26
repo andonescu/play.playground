@@ -140,4 +140,27 @@ object Main extends App {
       if (next == Nil) List(packed)
       else packed :: packWithSpan(next)
     }
+
+  def encode[A](list: List[A]): List[(Int, A)] = {
+    if (list.isEmpty)
+      List()
+    else {
+      // ## functionality replaced by foldRight
+      //      def numberList(packedList: List[List[A]], result: List[(Int, A)]): List[(Int, A)] =
+      //        packedList match {
+      //          case head :: tail => numberList(tail, (head.size, head.head) :: result)
+      //          case _ => result
+      //        }
+      //      numberList(pack(list), List())
+
+      pack(list).foldRight(List[(Int, A)]()) {
+        (group, result) => (group.size, group.head) :: result
+      }
+
+      // another way to resolve the problem
+      //      pack(list) map {
+      //        elem => (elem.size, elem.head)
+      //      }
+    }
+  }
 }
