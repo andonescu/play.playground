@@ -1,3 +1,4 @@
+import org.junit.Ignore
 import org.specs2.mutable._
 import org.specs2.runner._
 import org.junit.runner._
@@ -11,6 +12,7 @@ import play.api.test.Helpers._
  * For more information, consult the wiki.
  */
 @RunWith(classOf[JUnitRunner])
+@Ignore
 class ApplicationSpec extends Specification {
 
   "Application" should {

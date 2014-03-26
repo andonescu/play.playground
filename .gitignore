@@ -1,11 +1,12 @@
 logs
 project/project
 project/target
+project/.idea/*
 target
 tmp
 .history
 dist
-/.idea
+/.idea/*
 /*.iml
 /out
 /.idea_modules
