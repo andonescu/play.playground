@@ -81,7 +81,7 @@ class MainTest extends Specification {
       encodeResult.size mustEqual 6
       // different ways to check a list
       encodeResult must haveTheSameElementsAs(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
-//      encodeResult must contain(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+      // encodeResult must contain(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
       encodeResult.toSeq should equalTo(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)).toSeq)
     }
 
@@ -96,4 +96,16 @@ class MainTest extends Specification {
       encodeResult mustEqual List()
     }
   }
+
+
+  "#problem 11 : Modified run-length encoding.\nModify the result of problem P10 in such a way that if an element has " +
+    "no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as (N, E) terms." should {
+
+    "work as expected with a proper list" in {
+      val encodeResult = Main.encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+      encodeResult.size mustEqual 6
+      encodeResult must haveTheSameElementsAs(List((4, 'a), 'b, (2, 'c), (2, 'a), 'd, (4, 'e)))
+    }
+  }
+
 }

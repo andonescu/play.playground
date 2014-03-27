@@ -163,4 +163,20 @@ object Main extends App {
       //      }
     }
   }
+
+  def encodeModified[A](list: List[A]): List[Any] = {
+    encode(list).map {
+      pair => {
+        if (pair._1 == 1) pair._2 else pair
+      }
+    }
+  }
+
+
+  //typesafe version
+  //  def encodeModified[A](list: List[A]): List[Either[A, (Int, A)]] =
+  //    encode(list) map {
+  //      pair =>
+  //        if (pair._1 == 1) Left(pair._2) else Right(pair)
+  //    }
 }
